@@ -8,7 +8,7 @@
   "use strict";
 
   /* ------------------------------ الثوابت ------------------------------ */
-  const API_BASE = "http://localhost:5000/api";   /* عنوان الـ backend */
+  const API_BASE = "http://pc-master-dz.onrender.com/api";   /* عنوان الـ backend */
   const TOKEN_KEY = "pcmaster_admin_token";       /* مفتاح حفظ التوكن */
   const USER_KEY = "pcmaster_admin_user";         /* مفتاح حفظ بيانات المشرف */
 
