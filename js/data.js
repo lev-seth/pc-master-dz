@@ -10,7 +10,7 @@ window.CATALOG = {
 };
 
 /* API base URL — change this when deploying */
-const API_BASE = 'http://pc-master-dz.onrender.com/api';
+const API_BASE = 'https://pc-master-dz.onrender.com/api';
 
 /* Helper: log with prefix */
 function logCatalog(msg) {
