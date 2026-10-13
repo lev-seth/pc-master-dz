@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="سلة التسوق — راجع منتجاتك وعدّل الكميات قبل إتمام الطلب في PC Master DZ.">
+  <title>سلة التسوق | PC Master DZ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="cart">
+
+  <header data-site-header></header>
+
+  <main class="container">
+    <h1 class="page-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.2l1.6 10.2a2 2 0 0 0 2 1.7h7.7a2 2 0 0 0 2-1.6L20.5 8H6.2"/><circle cx="9.5" cy="20" r="1.4"/><circle cx="17.5" cy="20" r="1.4"/></svg>
+      سلة التسوق
+      <span class="small muted" data-cart-label></span>
+    </h1>
+
+    <div class="cart-layout" id="cart-layout">
+      <div>
+        <div class="cart-items" id="cart-items"></div>
+        <div id="cart-empty" class="hidden">
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.2l1.6 10.2a2 2 0 0 0 2 1.7h7.7a2 2 0 0 0 2-1.6L20.5 8H6.2"/><circle cx="9.5" cy="20" r="1.4"/><circle cx="17.5" cy="20" r="1.4"/></svg>
+            <h3>سلتك فارغة</h3>
+            <p>لم تُضِف أي منتج بعد. ابدأ التسوق واختر قطع جهازك القادمة!</p>
+            <a class="btn btn-primary" href="index.html">تصفّح المنتجات</a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="summary" id="cart-summary">
+        <h2>ملخص الطلب</h2>
+
+        <div class="field">
+          <label for="wilaya">اختر ولايتك لحساب رسوم التوصيل</label>
+          <select id="wilaya" data-wilaya>
+            <option value="">— اختر الولاية —</option>
+          </select>
+          <span class="field-hint">التوصيل مجاني للطلبات فوق 150 000 دج</span>
+        </div>
+
+        <div class="sum-row"><span>المجموع الفرعي</span><b data-subtotal>0 دج</b></div>
+        <div class="sum-row"><span>عدد القطع</span><b data-count>0</b></div>
+        <div class="sum-row"><span>رسوم التوصيل</span><b data-shipping>—</b></div>
+        <div class="sum-row sum-total"><span>الإجمالي</span><b data-total>0 دج</b></div>
+
+        <a class="btn btn-primary btn-block btn-lg" href="checkout.html" id="go-checkout" style="margin-top:1rem">
+          متابعة إلى إتمام الطلب
+        </a>
+        <button class="btn btn-ghost btn-block" type="button" id="clear-cart" style="margin-top:.6rem">
+          إفراغ السلة
+        </button>
+        <a class="btn btn-ghost btn-block" href="index.html" style="margin-top:.6rem">متابعة التسوق</a>
+
+        <div class="pay-note" style="margin-top:1rem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.4M12 7.9v.6"/></svg>
+          <span>الأسعار بالدينار الجزائري، والدفع يتم نقداً عند الاستلام (واجهة تجريبية بدون دفع حقيقي).</span>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer data-site-footer></footer>
+
+  <script src="js/data.js?v=4"></script>
+  <script>
+    /* انتظار اكتمال تحميل الكتالوج من الـ API قبل تشغيل بقية السكربتات
+       (نفس نمط بقية الصفحات حتى تعمل المكتبات بعد جلب البيانات) */
+    window.CATALOG_READY.then(function () {
+      var scripts = ['js/store.js?v=4', 'js/cart.js?v=4'];
+      var loaded = 0;
+      scripts.forEach(function (src) {
+        var s = document.createElement('script');
+        s.src = src;
+        s.onload = function () {
+          loaded++;
+          /* بعد تحميل السكربتين معاً، نُطلق حدث الجاهزية */
+          if (loaded === scripts.length) {
+            window.dispatchEvent(new Event('frontend:ready'));
+          }
+        };
+        document.body.appendChild(s);
+      });
+    });
+  </script>
+</body>
+</html>

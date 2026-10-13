@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="تفاصيل المنتج — مواصفات، سعر بالدينار الجزائري، تقييمات ومنتجات مشابهة من PC Master DZ.">
+  <title>تفاصيل المنتج | PC Master DZ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="product">
+
+  <header data-site-header></header>
+
+  <main class="container">
+    <nav class="breadcrumb" aria-label="مسار التنقل" id="breadcrumb">
+      <a href="index.html">الرئيسية</a>
+      <span class="sep">/</span>
+      <a href="index.html" data-cat-link>المنتجات</a>
+      <span class="sep">/</span>
+      <span class="current" data-crumb-name>المنتج</span>
+    </nav>
+
+    <div id="product-root">
+      <div class="empty-state">
+        <h3>جاري تحميل المنتج...</h3>
+      </div>
+    </div>
+
+    <!-- ==================== Similar products ==================== -->
+    <section class="section" id="similar-section" hidden>
+      <div class="section-head">
+        <div>
+          <h2>منتجات مشابهة</h2>
+          <p class="sub">منتجات أخرى من نفس الفئة قد تهمك</p>
+        </div>
+      </div>
+      <div class="grid" id="similar-grid"></div>
+    </section>
+  </main>
+
+  <footer data-site-footer></footer>
+
+  <script src="js/data.js?v=4"></script>
+  <script>
+    /* انتظار اكتمال تحميل الكتالوج من الـ API قبل تشغيل بقية السكربتات
+       (هذا يحل مشكلة "المنتج غير موجود" بسبب تنفيذ السكربتات قبل جلب البيانات) */
+    window.CATALOG_READY.then(function () {
+      var scripts = ['js/store.js?v=4', 'js/product.js?v=4'];
+      var loaded = 0;
+      scripts.forEach(function (src) {
+        var s = document.createElement('script');
+        s.src = src;
+        s.onload = function () {
+          loaded++;
+          /* بعد تحميل السكربتين معاً، نُطلق حدث الجاهزية */
+          if (loaded === scripts.length) {
+            window.dispatchEvent(new Event('frontend:ready'));
+          }
+        };
+        document.body.appendChild(s);
+      });
+    });
+  </script>
+</body>
+</html>

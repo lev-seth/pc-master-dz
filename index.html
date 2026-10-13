@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PC Master DZ — متجر جزائري لبيع قطع الحاسوب: معالجات، كروت شاشة، ذاكرة، تخزين، لوحات أم وأكثر بأسعار في الدينار الجزائري.">
+  <title>PC Master DZ | متجر قطع الحاسوب في الجزائر</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+
+  <header data-site-header></header>
+
+  <main>
+    <!-- ============================ Hero ============================ -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-box">
+          <div>
+            <span class="hero-tag">توصيل إلى 69 ولاية · دفع عند الاستلام</span>
+            <h1>ابنِ جهازك المثالي بقطع <em>أصلية</em> وبأسعار الجزائر 2026</h1>
+            <p>
+              معالجات، كروت شاشة، ذاكرة، تخزين، لوحات أم وأكثر — تشكيلة واسعة من أفضل
+              الماركات العالمية مع ضمان حقيقي وتوصيل سريع لجميع الولايات.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#products">تسوّق الآن</a>
+              <a class="btn btn-outline" href="#offers">العروض الخاصة</a>
+            </div>
+          </div>
+          <div class="hero-stats">
+            <div class="stat"><b>+245</b><span>منتج متوفر</span></div>
+            <div class="stat"><b>+63</b><span>ماركة عالمية</span></div>
+            <div class="stat"><b>69</b><span>ولاية للتوصيل</span></div>
+            <div class="stat"><b>12 شهر</b><span>ضمان على المعالجات</span></div>
+            <div class="stat"><b>24/7</b><span>تتبع طلبك</span></div>
+            <div class="stat"><b>0 دج</b><span>رسوم إضافية</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================= Products grid ======================= -->
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 data-grid-title>جميع المنتجات</h2>
+            <p class="sub" data-grid-sub>اختر من تشكيلة واسعة من قطع الحاسوب</p>
+          </div>
+          <span class="small muted" data-grid-count></span>
+        </div>
+
+        <div class="grid" id="products-grid"></div>
+
+        <div class="section-foot" id="section-foot">
+          <button class="btn btn-outline" id="load-more">عرض المزيد من المنتجات</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== Special offers ======================== -->
+    <section class="section offers" id="offers">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>العروض الخاصة</h2>
+            <p class="sub">خصومات محدودة على منتجات مختارة — الكمية محدودة!</p>
+          </div>
+          <span class="discount-pill">وفّر حتى 10%</span>
+        </div>
+        <div class="grid" id="offers-grid"></div>
+      </div>
+    </section>
+
+    <!-- ======================== Features =========================== -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>لماذا PC Master DZ؟</h2>
+            <p class="sub">تجربة شراء موثوقة من أول نقرة حتى التوصيل</p>
+          </div>
+        </div>
+        <div class="features">
+          <div class="feature">
+            <span class="f-icon" data-icon="truck"></span>
+            <div><b>توصيل سريع</b><span>إلى 69 ولاية خلال 2 إلى 5 أيام عمل</span></div>
+          </div>
+          <div class="feature">
+            <span class="f-icon" data-icon="cash"></span>
+            <div><b>الدفع عند الاستلام</b><span>ادفع نقداً عند وصول طلبك لباب منزلك</span></div>
+          </div>
+          <div class="feature">
+            <span class="f-icon" data-icon="shield"></span>
+            <div><b>ضمان حقيقي</b><span>من 12 إلى 36 شهراً حسب نوع المنتج</span></div>
+          </div>
+          <div class="feature">
+            <span class="f-icon" data-icon="headset"></span>
+            <div><b>دعم فني متخصص</b><span>نساعدك في اختيار القطع المتوافقة مع جهازك</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer data-site-footer></footer>
+
+  <script src="js/data.js?v=4"></script>
+<script>
+  /* Wait for catalog to load, then init the rest of the scripts */
+  window.CATALOG_READY.then(function () {
+    /* Dynamically load store.js and home.js after catalog */
+    var s1 = document.createElement('script');
+    s1.src = 'js/store.js?v=4';
+    s1.onload = function () {
+      var s2 = document.createElement('script');
+      s2.src = 'js/home.js?v=4';
+      document.body.appendChild(s2);
+    };
+    document.body.appendChild(s1);
+  });
+</script>
+</body>
+</html>

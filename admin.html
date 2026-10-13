@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>PC Master DZ — لوحة التحكم</title>
+
+  <!-- الخطوط: Cairo + Tajawal (نفس المتجر) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- أيقونات Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- تنسيقات لوحة التحكم فقط (لا نلمس css/style.css) -->
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       شاشة تسجيل الدخول — تظهر فقط عندما لا يوجد توكن صالح
+       ============================================================ -->
+  <div id="login-screen" class="login-screen">
+    <form id="login-form" class="login-card" autocomplete="off">
+      <div class="login-logo">
+        <span class="logo-mark"><i class="fa-solid fa-microchip"></i></span>
+        <h1>PC Master DZ <em>— Admin</em></h1>
+        <p class="muted">لوحة تحكم المتجر · دخول حصري للمشرف</p>
+      </div>
+
+      <!-- رسالة الخطأ (مخفيّة افتراضياً) -->
+      <div id="login-error" class="form-error" hidden></div>
+
+      <label class="field">
+        <span>البريد الإلكتروني</span>
+        <input type="email" id="login-email" name="email" placeholder="amine@store.dz" required>
+      </label>
+
+      <label class="field">
+        <span>كلمة المرور</span>
+        <input type="password" id="login-password" name="password" placeholder="••••••••" required>
+      </label>
+
+      <button type="submit" class="btn btn-primary btn-block" id="login-btn">
+        <span class="btn-label">تسجيل الدخول</span>
+      </button>
+
+      <p class="login-foot muted">
+        <i class="fa-solid fa-shield-halved"></i>
+        الجلسة محمية بـ JWT — يتم حفظ التوكن محلياً في متصفحك فقط.
+      </p>
+    </form>
+  </div>
+
+  <!-- ============================================================
+       لوحة التحكم — تظهر بعد تسجيل الدخول بنجاح
+       ============================================================ -->
+  <div id="dashboard" class="admin-shell" hidden>
+
+    <!-- الشريط العلوي -->
+    <header class="admin-topbar">
+      <button class="icon-btn" id="sidebar-toggle" aria-label="القائمة">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <div class="brand">
+        <span class="logo-mark sm"><i class="fa-solid fa-microchip"></i></span>
+        <span class="brand-text">PC Master DZ <em>— Admin</em></span>
+      </div>
+
+      <div class="topbar-actions">
+        <span class="admin-chip" id="admin-email">
+          <i class="fa-regular fa-circle-user"></i>
+        </span>
+        <button class="btn btn-outline btn-sm" id="logout-btn">
+          <i class="fa-solid fa-right-from-bracket"></i> خروج
+        </button>
+      </div>
+    </header>
+
+    <div class="admin-body">
+      <!-- القائمة الجانبية (240px) -->
+      <aside class="admin-sidebar" id="sidebar">
+        <nav class="side-nav">
+          <button class="nav-item active" data-tab="dashboard">
+            <i class="fa-solid fa-gauge-high"></i><span>لوحة القيادة</span>
+          </button>
+          <button class="nav-item" data-tab="orders">
+            <i class="fa-solid fa-box-open"></i><span>الطلبات</span>
+            <b class="nav-badge" id="nav-orders-count" hidden>0</b>
+          </button>
+          <button class="nav-item" data-tab="products">
+            <i class="fa-solid fa-memory"></i><span>المنتجات</span>
+          </button>
+          <button class="nav-item" data-tab="stats">
+            <i class="fa-solid fa-chart-line"></i><span>الإحصائيات</span>
+          </button>
+        </nav>
+
+        <div class="side-foot muted">
+          <i class="fa-solid fa-server"></i>
+          <span>API: localhost:5000</span>
+        </div>
+      </aside>
+
+      <!-- خلفية القائمة للجوال -->
+      <div class="sidebar-backdrop" id="sidebar-backdrop" hidden></div>
+
+      <!-- منطقة المحتوى -->
+      <main class="admin-main">
+        <section id="tab-dashboard" class="tab-panel active"></section>
+        <section id="tab-orders"    class="tab-panel"></section>
+        <section id="tab-products"  class="tab-panel"></section>
+        <section id="tab-stats"     class="tab-panel"></section>
+      </main>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       المودال (تفاصيل الطلب / نموذج المنتج) + حوار التأكيد + التوست
+       ============================================================ -->
+  <div id="modal-root" class="modal-overlay" hidden>
+    <div class="modal" id="modal-content" role="dialog" aria-modal="true"></div>
+  </div>
+
+  <div id="confirm-root" class="modal-overlay" hidden>
+    <div class="confirm-box" role="alertdialog" aria-modal="true">
+      <div class="confirm-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+      <p id="confirm-message">هل أنت متأكد؟</p>
+      <div class="confirm-actions">
+        <button class="btn btn-outline btn-sm" id="confirm-no">إلغاء</button>
+        <button class="btn btn-danger btn-sm" id="confirm-yes">نعم، احذف</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-wrap" class="toast-wrap"></div>
+
+  <!-- الوحدات (بالترتيب: API ← UI ← المنطق الرئيسي) -->
+  <script src="js/admin-api.js"></script>
+  <script src="js/admin-ui.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

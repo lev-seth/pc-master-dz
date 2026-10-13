@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+
+# Environment variables (أسرار!)
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build outputs
+dist/
+build/
+
+# Uploads
+uploads/
+
+# IDE
+.vscode/
+.idea/
+
+# Test files
+test.json
+login.json
+product.json
+order-test.json
+token.txt
+categories-report.txt
+
+# Catalog clone (large)
+PC-components-mock-catalog-dz/

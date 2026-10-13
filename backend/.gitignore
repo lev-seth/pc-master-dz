@@ -1,0 +1,11 @@
+# dependencies
+node_modules/
+
+# environment variables (never commit secrets!)
+.env
+
+# local uploads (images go to Cloudinary, but just in case)
+uploads/
+
+# logs
+*.log

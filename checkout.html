@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="إتمام الطلب — أدخل معلومات التوصيل لتأكيد طلبك لدى PC Master DZ.">
+  <title>إتمام الطلب | PC Master DZ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="checkout">
+
+  <header data-site-header></header>
+
+  <main class="container">
+    <h1 class="page-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="M3.5 9.5h17M7 14.5h4"/></svg>
+      إتمام الطلب
+    </h1>
+
+    <div id="checkout-root">
+      <div class="checkout-layout">
+        <!-- ====================== Form ====================== -->
+        <div>
+          <form id="checkout-form" novalidate>
+            <div class="form-card" style="margin-bottom:1.2rem">
+              <h2>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.3 7-11a7 7 0 1 0-14 0c0 5.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+                معلومات التوصيل
+              </h2>
+
+              <div class="form-row">
+                <div class="field" data-field="name">
+                  <label for="fullname">الاسم الكامل <span class="req">*</span></label>
+                  <input type="text" id="fullname" name="fullname" placeholder="مثال: محمد بن أمين" autocomplete="name">
+                  <span class="err">يرجى إدخال الاسم الكامل (3 أحرف على الأقل)</span>
+                </div>
+
+                <div class="field" data-field="phone">
+                  <label for="phone">رقم الهاتف <span class="req">*</span></label>
+                  <input type="tel" id="phone" name="phone" placeholder="0X XX XX XX XX" dir="ltr" autocomplete="tel">
+                  <span class="err">يرجى إدخال رقم هاتف جزائري صحيح (مثال: 0550123456)</span>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="field" data-field="wilaya">
+                  <label for="wilaya">الولاية <span class="req">*</span></label>
+                  <select id="wilaya" name="wilaya">
+                    <option value="">— اختر الولاية —</option>
+                  </select>
+                  <span class="err">يرجى اختيار الولاية</span>
+                </div>
+
+                <div class="field" data-field="commune">
+                  <label for="commune">البلدية</label>
+                  <input type="text" id="commune" name="commune" placeholder="مثال: باب الزوار">
+                  <span class="field-hint">اختياري</span>
+                </div>
+              </div>
+
+              <div class="field" data-field="address">
+                <label for="address">العنوان الكامل <span class="req">*</span></label>
+                <textarea id="address" name="address" placeholder="الحي، الشارع، رقم المنزل، أقرب معلم..." autocomplete="street-address"></textarea>
+                <span class="err">يرجى إدخال عنوان التوصيل (10 أحرف على الأقل)</span>
+              </div>
+
+              <div class="field" data-field="notes">
+                <label for="notes">ملاحظات إضافية</label>
+                <textarea id="notes" name="notes" placeholder="أي تفاصيل تساعد الموصّل للوصول إليك، أو وقت مناسب للتوصيل..." style="min-height:76px"></textarea>
+              </div>
+            </div>
+
+            <div class="form-card" style="margin-bottom:1.2rem">
+              <h2>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v5M18 9.5v5"/></svg>
+                طريقة الدفع
+              </h2>
+
+              <label class="pay-option selected">
+                <input type="radio" name="payment" value="cod" checked>
+                <span class="pay-option-body">
+                  <b>الدفع عند الاستلام</b>
+                  <small>ادفع نقداً لمندوب التوصيل عند وصول الطلب — متاح لجميع الولايات</small>
+                </span>
+              </label>
+
+              <label class="pay-option disabled">
+                <input type="radio" name="payment" value="card" disabled>
+                <span class="pay-option-body">
+                  <b>البطاقة الذهبية / CIB</b>
+                  <small>قريباً — الدفع الإلكتروني غير مفعّل في هذه النسخة التجريبية</small>
+                </span>
+              </label>
+
+              <div class="pay-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.4M12 7.9v.6"/></svg>
+                <span>سيتم إرسال طلبك إلى خادم المتجر لإنشاء رقم طلب حقيقي (بدون تسجيل دخول)، والدفع عند الاستلام عند وصول الطلب.</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block btn-lg">
+                تأكيد الطلب
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- ================== Order summary ================== -->
+        <aside class="order-box">
+          <h2>ملخص الطلب</h2>
+          <ul class="order-list" id="order-list"></ul>
+
+          <div class="sum-row"><span>المجموع الفرعي</span><b data-subtotal>0 دج</b></div>
+          <div class="sum-row"><span>رسوم التوصيل</span><b data-shipping>—</b></div>
+          <div class="sum-row sum-total"><span>الإجمالي</span><b data-total>0 دج</b></div>
+
+          <a class="btn btn-ghost btn-block" href="cart.html" style="margin-top:1rem">العودة إلى السلة</a>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <footer data-site-footer></footer>
+
+  <script src="js/data.js?v=4"></script>
+  <script>
+    /* انتظار اكتمال تحميل الكتالوج من الـ API قبل تشغيل بقية السكربتات
+       (نفس نمط بقية الصفحات حتى تعمل المكتبات بعد جلب البيانات) */
+    window.CATALOG_READY.then(function () {
+      var scripts = ['js/store.js?v=4', 'js/checkout.js?v=4'];
+      var loaded = 0;
+      scripts.forEach(function (src) {
+        var s = document.createElement('script');
+        s.src = src;
+        s.onload = function () {
+          loaded++;
+          /* بعد تحميل السكربتين معاً، نُطلق حدث الجاهزية */
+          if (loaded === scripts.length) {
+            window.dispatchEvent(new Event('frontend:ready'));
+          }
+        };
+        document.body.appendChild(s);
+      });
+    });
+  </script>
+</body>
+</html>
