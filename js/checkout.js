@@ -148,7 +148,7 @@ function initCheckoutPage() {
   });
 
   /* ---------- إرسال الطلب إلى الـ API (guest checkout) ---------- */
-  const API_ORDERS = "https://pc-master-dz.onrender.com/api"; /* عنوان خدمة الطلبات */
+  const API_ORDERS = "https://pc-master-dz.onrender.com/api/orders"; /* عنوان خدمة الطلبات */
 
   /* زر الإرسال لعرض حالة التحميل واستعادته بعد الخطأ */
   const submitBtn = document.querySelector('#checkout-form button[type="submit"]');
